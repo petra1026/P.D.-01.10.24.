@@ -1,0 +1,68 @@
+from klase import Dators
+import tkinter as tk
+from tkinter import ttk
+
+root= tk.Tk()
+root.title("Detaļu un programmatūru uzskaite")
+root.geometry("300x300")
+
+frame = ttk.Frame(root)
+options = {"padx": 5, "pady": 5}
+
+# Cilvēku saraksts
+visas_preces = []
+
+
+# Ekrāns
+
+# Nosaukums label
+nosaukums_label = ttk.Label(frame, text='Nosaukums')
+nosaukums_label.grid(column=0, row=0, sticky='w', **options)
+
+skaits_label = ttk.Label(frame, text='Skaits')
+skaits_label.grid(column=0, row=1, sticky='w', **options)
+
+prece_label = ttk.Label(frame, text='Prece')
+prece_label.grid(column=0, row=2, sticky='w', **options)
+
+
+
+# vards entry
+nosaukums = tk.StringVar()
+nosaukums = ttk.Entry(frame, textvariable=nosaukums)
+nosaukums.grid(column=1, row=0, **options)
+nosaukums.focus()
+
+# dzimums entry
+skaits = tk.StringVar()
+skaits_entry = ttk.Entry(frame, textvariable=skaits)
+skaits_entry.grid(column=1, row=1, **options)
+
+# vecums entry
+prece = tk.IntVar()
+prece_entry = ttk.Entry(frame, textvariable=prece)
+prece_entry.grid(column=1, row=2, **options)
+
+# ražošanas button
+def convert_button_clicked():
+    preces_nosaukums = nosaukums.get()
+    preces_skaits = skaits.get()
+    preces_tips = prece.get()
+    visas_preces.append(Dators(preces_nosaukums, preces_skaits, preces_tips))
+    result_label.config(text=visas_preces[-1].pastastit_par_sevi())
+
+
+razot_button = ttk.Button(frame, text='Ražot')
+razot_button.grid(column=2, row=0, sticky='W', **options)
+razot_button.configure(command=convert_button_clicked)
+
+# result label
+result_label = ttk.Label(frame)
+result_label.grid(row=3, columnspan=3, **options)
+
+# add padding to the frame and show it
+frame.grid(padx=10, pady=10)
+
+
+# start the app
+root.mainloop()

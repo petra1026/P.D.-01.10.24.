@@ -4,14 +4,15 @@ from tkinter import ttk, END
 
 root= tk.Tk()
 root.title("Detaļu un programmatūru uzskaite")
-root.geometry("400x300")
+root.geometry("500x400")
 
 frame = ttk.Frame(root)
+frame.grid(padx=10, pady=10)
 options = {"padx": 5, "pady": 5}
 
-# Cilvēku saraksts
+# Preču saraksts
 visas_preces = []
-
+total_income = 0
 
 # Ekrāns
 
@@ -24,7 +25,6 @@ prece_label.grid(column=0, row=1, sticky='w', **options)
 
 skaits_label = ttk.Label(frame, text='Skaits')
 skaits_label.grid(column=0, row=2, sticky='w', **options)
-
 
 
 # nosaukums entry
@@ -43,6 +43,7 @@ prece = tk.IntVar()
 prece_entry = ttk.Entry(frame, textvariable=prece)
 prece_entry.grid(column=1, row=2, **options)
 
+
 # ražošanas button
 def convert_button_clicked():
     preces_nosaukums = nosaukums.get()
@@ -57,6 +58,7 @@ razot_button = ttk.Button(frame, text='Ražot')
 razot_button.grid(column=2, row=0, sticky='W', **options)
 razot_button.configure(command=convert_button_clicked)
 
+# Saraksta loga atjaunošana
 saturs = tk.Variable(value=tuple(visas_preces))
 
 listbox = tk.Listbox(
@@ -79,10 +81,6 @@ def nomainit_sarakstu():
 # result label
 result_label = ttk.Label(frame)
 result_label.grid(row=3, columnspan=3, **options)
-
-# add padding to the frame and show it
-frame.grid(padx=10, pady=10)
-
 
 # start the app
 root.mainloop()

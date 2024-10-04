@@ -1,9 +1,11 @@
 print("Hello!")
 class Prece:
-    def __init__(self, nosaukums, kas, skaits = 0):
+    def __init__(self, nosaukums, kas, madeby, skaits = 0):
         self.name = nosaukums
         self.identity = kas
+        self.izgatavotajs = madeby
         self.number = skaits
+        
        
 
     def pastastit_par_sevi(self):
@@ -14,13 +16,14 @@ class Prece:
             teksts = "detaļa"
         else:
             teksts = self.identity
-        print("Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number))
-        return "Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number)
+        print("Produkts: {}, kas par produktu: {}, izgatavotājs: {}, skaits: {}." .format(self.name, teksts, self.izgatavotajs, self.number))
+        return "Produkts: {}, kas par produktu: {}, izgatavotājs: {}, skaits: {}." .format(self.name, teksts, self.izgatavotajs, self.number)
     
 class Dators(Prece):
-    def __init__(self, nosaukums, skaits, kas):
+    def __init__(self, nosaukums, kas, madeby, skaits = 0):
         self.name = nosaukums
         self.identity = kas
+        self.izgatavotajs = madeby
         self.number = skaits
         
 
@@ -32,9 +35,10 @@ class Dators(Prece):
             teksts = "detaļa"
         else:
             teksts = self.identity
-        print("Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number))
-        return "Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number)
+        print("Produkts: {}, kas par produktu: {}, izgatavotājs: {}, skaits: {}." .format(self.name, teksts, self.izgatavotajs, self.number))
+        return "Produkts: {}, kas par produktu: {}, izgatavotājs: {}, skaits: {}." .format(self.name, teksts, self.izgatavotajs, self.number)
     
+
 class Mātesplate(Prece):
     def __init__(self, nosaukums, skaits, kas):
         super().__init__(nosaukums, skaits, "d")

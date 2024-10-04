@@ -1,10 +1,10 @@
-from klase import Dators
+from klase import Programmatūra
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, END
 
 root= tk.Tk()
 root.title("Detaļu un programmatūru uzskaite")
-root.geometry("300x300")
+root.geometry("400x300")
 
 frame = ttk.Frame(root)
 options = {"padx": 5, "pady": 5}
@@ -19,26 +19,26 @@ visas_preces = []
 nosaukums_label = ttk.Label(frame, text='Nosaukums')
 nosaukums_label.grid(column=0, row=0, sticky='w', **options)
 
-skaits_label = ttk.Label(frame, text='Skaits')
-skaits_label.grid(column=0, row=1, sticky='w', **options)
-
 prece_label = ttk.Label(frame, text='Prece')
-prece_label.grid(column=0, row=2, sticky='w', **options)
+prece_label.grid(column=0, row=1, sticky='w', **options)
+
+skaits_label = ttk.Label(frame, text='Skaits')
+skaits_label.grid(column=0, row=2, sticky='w', **options)
 
 
 
-# vards entry
+# nosaukums entry
 nosaukums = tk.StringVar()
 nosaukums = ttk.Entry(frame, textvariable=nosaukums)
 nosaukums.grid(column=1, row=0, **options)
 nosaukums.focus()
 
-# dzimums entry
+# skaits entry
 skaits = tk.StringVar()
 skaits_entry = ttk.Entry(frame, textvariable=skaits)
 skaits_entry.grid(column=1, row=1, **options)
 
-# vecums entry
+# prece entry
 prece = tk.IntVar()
 prece_entry = ttk.Entry(frame, textvariable=prece)
 prece_entry.grid(column=1, row=2, **options)
@@ -48,13 +48,33 @@ def convert_button_clicked():
     preces_nosaukums = nosaukums.get()
     preces_skaits = skaits.get()
     preces_tips = prece.get()
-    visas_preces.append(Dators(preces_nosaukums, preces_skaits, preces_tips))
+    visas_preces.append(Programmatūra(preces_nosaukums, preces_skaits, preces_tips))
     result_label.config(text=visas_preces[-1].pastastit_par_sevi())
+    nomainit_sarakstu()
 
 
 razot_button = ttk.Button(frame, text='Ražot')
 razot_button.grid(column=2, row=0, sticky='W', **options)
 razot_button.configure(command=convert_button_clicked)
+
+saturs = tk.Variable(value=tuple(visas_preces))
+
+listbox = tk.Listbox(
+    root,
+    listvariable=saturs,
+    height=6,
+    selectmode=tk.EXTENDED
+)
+
+listbox.grid(row=4, columnspan=3, **options)
+
+
+# Listbox saraksta atjaunošana
+def nomainit_sarakstu():
+    listbox.delete(0,END)
+    for preces in visas_preces:
+        listbox.insert("end","{},{},{}".format(preces.name,preces.identity,preces.number))
+
 
 # result label
 result_label = ttk.Label(frame)

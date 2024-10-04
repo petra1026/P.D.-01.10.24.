@@ -1,9 +1,10 @@
 print("Hello!")
-class Dators:
-    def __init__(nosaukums, skaits, kas):
+class Programmatūra:
+    def __init__(self, nosaukums, kas, skaits = 0):
         self.name = nosaukums
-        self.number = skaits
         self.identity = kas
+        self.number = skaits
+       
 
     def pastastit_par_sevi(self):
 
@@ -13,18 +14,36 @@ class Dators:
             teksts = "detaļa"
         else:
             teksts = self.identity
-        print("Produkts {}, skaits {}, kas par produktu {}." .format(self.name, self.number, teksts))
-        return "Produkts {}, skaits {}, kas par produktu {}." .format(self.name, self.number, teksts)
+        print("Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number))
+        return "Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number)
     
-class detaļa(Mātes plate):
-    def __init__(nosaukums, skaits, kas):
+class Detaļa:
+    def __init__(self, nosaukums, skaits, kas):
+        self.name = nosaukums
+        self.identity = kas
+        self.number = skaits
+        
+
+    def pastastit_par_sevi(self):
+
+        if self.identity == "p":
+            teksts = "programmatūra"
+        elif self.identity == "d":
+            teksts = "detaļa"
+        else:
+            teksts = self.identity
+        print("Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number))
+        return "Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number)
+    
+class Mātesplate(Detaļa):
+    def __init__(self, nosaukums, skaits, kas):
         super().__init__(nosaukums, skaits, "d")
         self.info()
     def info(self):
         super().info()
         print(self.name,"detaļa.")
 
-#lieta 1=Dators("Dell", 25, "p")
+#lieta 1= programmatūra("Windows11", "p", 25)
 # programmatura.pastastit_par_sevi()
 
-# lieta 2 = detaļa("Mātes plate", 79, "d")
+# lieta 2 = detaļa("Mātes plate", "d", 79)

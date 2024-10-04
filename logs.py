@@ -1,4 +1,4 @@
-from klase import Programmatūra
+from klase import Prece, Dators, Mātesplate
 import tkinter as tk
 from tkinter import ttk, END
 
@@ -49,7 +49,7 @@ def convert_button_clicked():
     preces_nosaukums = nosaukums.get()
     preces_skaits = skaits.get()
     preces_tips = prece.get()
-    visas_preces.append(Programmatūra(preces_nosaukums, preces_skaits, preces_tips))
+    visas_preces.append(Prece(preces_nosaukums, preces_skaits, preces_tips))
     result_label.config(text=visas_preces[-1].pastastit_par_sevi())
     nomainit_sarakstu()
 

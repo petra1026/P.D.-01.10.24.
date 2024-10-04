@@ -1,5 +1,5 @@
 print("Hello!")
-class Programmatūra:
+class Prece:
     def __init__(self, nosaukums, kas, skaits = 0):
         self.name = nosaukums
         self.identity = kas
@@ -17,7 +17,7 @@ class Programmatūra:
         print("Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number))
         return "Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number)
     
-class Detaļa:
+class Dators(Prece):
     def __init__(self, nosaukums, skaits, kas):
         self.name = nosaukums
         self.identity = kas
@@ -35,7 +35,7 @@ class Detaļa:
         print("Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number))
         return "Produkts: {}, kas par produktu: {}, skaits: {}." .format(self.name, teksts, self.number)
     
-class Mātesplate(Detaļa):
+class Mātesplate(Prece):
     def __init__(self, nosaukums, skaits, kas):
         super().__init__(nosaukums, skaits, "d")
         self.info()
